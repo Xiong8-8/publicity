@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang= "en" >
+
+<头>
+    <元字符集=“UTF-8”>
+
+</头>
+
+<正文>
+    X ：
+    <输入id=“X”类型=“文本”名称=“oX”>
+    <br>
+    是：
+    <输入id=“Y”类型=“文本”名称=“oY”>
+    <button onclick=“myFunction()”>检测</button>
+    <button onclick=“myr()”>旋转</button>
+    <按钮onclick =“qw()”>####</按钮>
+
+    <p id= "demo" >选择点颜色</p>
+    <div id= "myg" style= "边框：1px 纯红色；显示：内联块；" >
+        <img id= "myg1" onclick= "myimg(事件)" src= "picture/01.png" />
+    </div>
+
+</正文>
+<脚本>
+   // 设置超时(a,2000)
+   函数 qw() {
+    document.getElementById( "myg" ).requestFullscreen()
+   }
+   
+     函数 a() {
+        // document.getElementById( "myg" ).width=document.getElementById( "myg1" ).width
+        // document.getElementById( "myg" ).height=document.getElementById( "myg1" ).height
+         document.getElementById( "myg" ).style.width=document.getElementById( "myg1" ).width+ "px"
+         document.getElementById( "myg" ).style.height=document.getElementById( "myg1" ).heigh+ "px"
+         Alert(document.getElementById( "myg" ).width+ "," +document.getElementById( "myg" ).height)
+    }
+
+
+    函数 myFunction() {
+        var x = document.getElementById( "X" ).value
+        var y = document.getElementById( "Y" ).value
+        var ctx = document.getElementById( "myg" );
+        var imgData = ctx.getImageData(x , y , 50 , 50);
+        红色 = imgData.data [ 0 ] ;
+        绿色 = imgData.data [ 1 ] ;
+        蓝色 = imgData.data [ 2 ]；
+        阿尔法 = imgData.data [ 3 ] ;
+
+
+        document.getElementById( "demo" ).innerHTML = x + "," + Y + ":" + 红色 + " " + 绿色 + " " + 蓝色 + " " + alpha;
+    }
+    函数 myimg(事件) {
+        document.getElementById( "X" ).value = event.offsetX;
+        document.getElementById( "Y" ).value = event.offsetY;
+    }
+    旋转 = 0
+    函数 myr(事件) {
+        旋转 += 90
+        if (旋转 == 360) {旋转 = 0 }
+        if ( 旋转 == 90 || 旋转 == 270) {
+            让 x = document.getElementById( "myg1" ).width
+            让 y = document.getElementById( "myg1" ).height
+            document.getElementById( "myg" ).style.position = "相对"
+            如果（x > y）{
+                令 xy = (x - y) / 2
+                document.getElementById( “myg” ).style.left = "-" + xy + "px"
+                document.getElementById( "myg" ).style.top = xy + "px"
+                
+            }另外{
+                设 xy = (y - x) / 2
+                document.getElementById( "myg" ).style.left = xy + "px"
+                document.getElementById( "myg" ).style.top = "-" + xy + "px"
+                
+            }
+        }另外{
+
+            document.getElementById( "myg" ).style.left = "0px"
+            document.getElementById(“myg”).style.top = "0px"
+        }
+        document.getElementById( "myg" ).style.transform = "旋转(" + 旋转 + "deg)"
+    }
+
+</> 脚本
+
+</html>
