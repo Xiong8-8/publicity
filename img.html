@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+</head>
+
+<body>
+    X:
+    <input id="X" type="text" name="oX">
+    <br>
+    Y:
+    <input id="Y" type="text" name="oY">
+    <button onclick="myFunction()">检测</button>
+    <button onclick="myr()">旋转</button>
+    <button onclick="qw()">####</button>
+
+    <p id="demo">选择点颜色</p>
+    <div id="myg" style="border: 1px solid red;display: inline-block;">
+        <img id="myg1" onclick="myimg(event)" src="picture/01.png" />
+    </div>
+
+</body>
+<script>
+   // setTimeout(a,2000)
+   function qw() {
+    document.getElementById("myg").requestFullscreen()
+   }
+   
+     function a() {
+        //  document.getElementById("myg").width=document.getElementById("myg1").width
+        //  document.getElementById("myg").height=document.getElementById("myg1").height
+         document.getElementById("myg").style.width=document.getElementById("myg1").width+"px"
+         document.getElementById("myg").style.height=document.getElementById("myg1").heigh+"px"
+         alert(document.getElementById("myg").width+","+document.getElementById("myg").height)
+    }
+
+
+    function myFunction() {
+        var x = document.getElementById("X").value
+        var y = document.getElementById("Y").value
+        var ctx = document.getElementById("myg");
+        var imgData = ctx.getImageData(x, y, 50, 50);
+        red = imgData.data[0];
+        green = imgData.data[1];
+        blue = imgData.data[2];
+        alpha = imgData.data[3];
+
+
+        document.getElementById("demo").innerHTML = x + "," + Y + ":" + red + " " + green + " " + blue + " " + alpha;
+    }
+    function myimg(event) {
+        document.getElementById("X").value = event.offsetX;
+        document.getElementById("Y").value = event.offsetY;
+    }
+    var rotate = 0
+    function myr(event) {
+        rotate += 90
+        if (rotate == 360) { rotate = 0 }
+        if (rotate == 90 || rotate == 270) {
+            let x = document.getElementById("myg1").width
+            let y = document.getElementById("myg1").height
+            document.getElementById("myg").style.position = "relative"
+            if (x > y) {
+                let xy = (x - y) / 2
+                document.getElementById("myg").style.left = "-" + xy + "px"
+                document.getElementById("myg").style.top = xy + "px"
+                
+            } else {
+                let xy = (y - x) / 2
+                document.getElementById("myg").style.left = xy + "px"
+                document.getElementById("myg").style.top = "-" + xy + "px"
+                
+            }
+        } else {
+
+            document.getElementById("myg").style.left = "0px"
+            document.getElementById("myg").style.top = "0px"
+        }
+        document.getElementById("myg").style.transform = "rotate(" + rotate + "deg)"
+    }
+
+</script>
+
+</html>
